@@ -37,7 +37,6 @@ while (true)
     }
 }
 
-
 var statistics = user.GetStatistics();
 Console.WriteLine($"Wartość średnia: {statistics.Average}");
 Console.WriteLine($"Wartość minimalna: {statistics.Min}");

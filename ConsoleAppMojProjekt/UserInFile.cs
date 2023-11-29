@@ -2,14 +2,14 @@
 
 namespace ConsoleAppMojProjekt
 {
-    public class UserInFile : UserBase                      //Przechowywanie danych w pliku!
+    public class UserInFile : UserBase                      
     {
         public override event NumberAddedDelegate NumberAdded;
 
-        private List<float> numbers = new List<float>();    //Dodałem bo w statystylach mi pokazywało błąd
+        private List<float> numbers = new List<float>();    
 
-        private const string fileNumber = "number.txt";     //To poniekąd jest Polimorfizm (wielopostaciowość)
-        public UserInFile(string name, string surname)      //Jak nadpisujesz to obowiązkowo override!
+        private const string fileNumber = "number.txt";     
+        public UserInFile(string name, string surname)      
             : base(name, surname)
         {
         }
@@ -54,13 +54,13 @@ namespace ConsoleAppMojProjekt
         }
         public override Statistics GetStatistics()
         {
-            var statistics = new Statistics();                              //Nowe statystyki
+            var statistics = new Statistics();                              
 
             foreach (var number in this.numbers)
             {
                 statistics.AddNumber(number);
             }
-            return statistics;                                              //Zamknięcie                                             //Zamknięcie
+            return statistics;                                              
         }
     }
 }
