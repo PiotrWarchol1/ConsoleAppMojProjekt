@@ -10,7 +10,7 @@ Console.WriteLine("Proszę wpisać odpowiedznią liczbę od 0 do 100");
 Console.WriteLine("---------------------------------------------");
 Console.WriteLine("                        ");
 
-var user = new UserInFile("Piotr", "Warchoł");
+var user = new UserInMemmory("Piotr", "Warchoł");
 user.NumberAdded += UserNumberAdded;
 
 void UserNumberAdded(object sender, EventArgs args)

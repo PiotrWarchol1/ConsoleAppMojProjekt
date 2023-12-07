@@ -2,8 +2,8 @@
 {
     public class UserInFile : UserBase                      
     {
-        private const string fileNumber = "number.txt";  
-        
+        private const string fileNumber = "number.txt";
+
         public override event NumberAddedDelegate NumberAdded;
 
         public UserInFile(string name, string surname)      
@@ -37,8 +37,26 @@
         }
         public override void AddNumber(char number)
         {
-            float numberAsFloat = (float)number;
-            this.AddNumber(numberAsFloat);
+            switch (number)
+            {
+                case 'A':
+                    this.AddNumber(100);
+                    break;
+                case 'B':
+                    this.AddNumber(80);
+                    break;
+                case 'C':
+                    this.AddNumber(60);
+                    break;
+                case 'D':
+                    this.AddNumber(40);
+                    break;
+                case 'E':
+                    this.AddNumber(20);
+                    break;
+                default:
+                    throw new Exception("Wrong Letter");
+            }
         }
         public override void AddNumber(string number)
         {

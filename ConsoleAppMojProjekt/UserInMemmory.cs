@@ -5,8 +5,6 @@
     {
         public override event NumberAddedDelegate NumberAdded;
 
-        public delegate void WriteMessage(string message);
-
         private List<float> numbers = new List<float>();
 
         public UserInMemmory(string name, string surname)
@@ -49,19 +47,19 @@
             switch (number)
             {
                 case 'A':
-                    this.numbers.Add(100);
+                    this.AddNumber(100);
                     break;
                 case 'B':
-                    this.numbers.Add(80);
+                    this.AddNumber(80);
                     break;
                 case 'C':
-                    this.numbers.Add(60);
+                    this.AddNumber(60);
                     break;
                 case 'D':
-                    this.numbers.Add(40);
+                    this.AddNumber(40);
                     break;
                 case 'E':
-                    this.numbers.Add(20);
+                    this.AddNumber(20);
                     break;
                 default:
                     throw new Exception("Wrong Letter");
