@@ -1,6 +1,4 @@
-﻿using System.Net.NetworkInformation;
-
-namespace ConsoleAppMojProjekt 
+﻿namespace ConsoleAppMojProjekt 
 {
     public abstract class UserBase : IUser
     {

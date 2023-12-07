@@ -1,4 +1,4 @@
-﻿using System.Net.NetworkInformation;
+﻿using static ConsoleAppMojProjekt.UserBase;
 
 namespace ConsoleAppMojProjekt
 {
@@ -11,6 +11,7 @@ namespace ConsoleAppMojProjekt
         void AddNumber(int punkt);
         void AddNumber(string punkt);
         void AddNumber(char punkt);
+        event NumberAddedDelegate NumberAdded;
         Statistics GetStatistics();
     }
 }

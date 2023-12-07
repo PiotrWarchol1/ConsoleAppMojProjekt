@@ -1,4 +1,3 @@
-
 using ConsoleAppMojProjekt;
  
 namespace TestProject

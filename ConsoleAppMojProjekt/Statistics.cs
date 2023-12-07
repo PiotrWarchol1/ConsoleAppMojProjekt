@@ -1,13 +1,12 @@
-﻿
-namespace ConsoleAppMojProjekt
+﻿namespace ConsoleAppMojProjekt
 {
     public class Statistics
     { 
-        public float Max { get;  set; }
-        public float Min { get;  set; }
-        public float Sum { get;  set; }
-        public int Count { get;  set; }
-        public float Average
+        public float Max { get; private set; }
+        public float Min { get; private set; }
+        public float Sum { get; private set; }
+        public int Count { get; private set; }
+        public float Average 
         {
             get
             {
@@ -45,8 +44,8 @@ namespace ConsoleAppMojProjekt
         {
             this.Count++;
             this.Sum += number;
-            this.Min = Math.Min(this.Min, number);
-            this.Max = Math.Max(this.Max, number);
+            this.Min = Math.Min(number, this.Min);
+            this.Max = Math.Max(number, this.Max);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using ConsoleAppMojProjekt;
-using System.Reflection.Metadata;
 
 Console.WriteLine("------------------------------------");
 Console.WriteLine("PROGRAM OCENIAJĄCY TRENIG NA SIŁOWNI");
@@ -11,7 +10,7 @@ Console.WriteLine("Proszę wpisać odpowiedznią liczbę od 0 do 100");
 Console.WriteLine("---------------------------------------------");
 Console.WriteLine("                        ");
 
-var user = new UserInMemmory("Piotr", "Warchoł");
+var user = new UserInFile("Piotr", "Warchoł");
 user.NumberAdded += UserNumberAdded;
 
 void UserNumberAdded(object sender, EventArgs args)

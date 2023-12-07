@@ -1,14 +1,11 @@
-﻿using System.Diagnostics;
-
-namespace ConsoleAppMojProjekt
+﻿namespace ConsoleAppMojProjekt
 {
     public class UserInFile : UserBase                      
     {
+        private const string fileNumber = "number.txt";  
+        
         public override event NumberAddedDelegate NumberAdded;
 
-        private List<float> numbers = new List<float>();    
-
-        private const string fileNumber = "number.txt";     
         public UserInFile(string name, string surname)      
             : base(name, surname)
         {
@@ -16,22 +13,33 @@ namespace ConsoleAppMojProjekt
 
         public override void AddNumber(float number)
         {
-            using (var writer = File.CreateText(fileNumber))
+            if (number >= 0 && number <= 100)
             {
-                writer.WriteLine(number);
+                using (var writer = File.AppendText(fileNumber))
+                {
+                    writer.WriteLine(number);
+                }
+                if (NumberAdded != null)
+                {
+                    NumberAdded(this, new EventArgs());
+                }
             }
-            if (NumberAdded != null)
+            else
             {
-                NumberAdded(this, new EventArgs());
+                    throw new Exception("Niewłaściwa liczba");
             }
         }
 
         public override void AddNumber(int number)
         {
-            float numbwerAsFloat = (float)number;
-            this.AddNumber(numbwerAsFloat);
+            float numberAsFloat = (float)number;
+            this.AddNumber(numberAsFloat);
         }
-
+        public override void AddNumber(char number)
+        {
+            float numberAsFloat = (float)number;
+            this.AddNumber(numberAsFloat);
+        }
         public override void AddNumber(string number)
         {
             if (float.TryParse(number, out float result))
@@ -44,19 +52,37 @@ namespace ConsoleAppMojProjekt
             }
             
         }
-
-        public override void AddNumber(char number)
-        {
-            using (var writer = File.AppendText(fileNumber))
-            {
-                writer.WriteLine(number);
-            }
-        }
         public override Statistics GetStatistics()
+        {
+            var numbersFromFile = this.ReadNumbersFromFile();
+            var result = this.CountStatistics(numbersFromFile);
+            return result;
+        }
+
+
+        private List<float> ReadNumbersFromFile()
+        {
+            var numbers = new List<float>();
+            if (File.Exists($"{fileNumber}"))
+            {
+                using (var reader = File.OpenText($"{fileNumber}"))
+                {
+                    var line = reader.ReadLine();
+                    while (line != null)
+                    {
+                        var number = float.Parse(line);
+                        numbers.Add(number);
+                        line = reader.ReadLine();
+                    }
+                }
+            }
+            return numbers;
+        }
+        private Statistics CountStatistics(List<float> numbers)
         {
             var statistics = new Statistics();                              
 
-            foreach (var number in this.numbers)
+            foreach (var number in numbers)
             {
                 statistics.AddNumber(number);
             }
